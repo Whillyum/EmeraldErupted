@@ -60,6 +60,8 @@ static void PlayerFaceHiddenItem(u8);
 static void CheckForHiddenItemsInMapConnection(u8);
 static void Task_OpenRegisteredPokeblockCase(u8);
 static void Task_AccessPokemonBoxLink(u8);
+static void ItemUseOnFieldCB_Repel(u8);
+//static void Task_CloseRepelMessage(u8);
 static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
@@ -71,10 +73,10 @@ static void BootUpSoundTMHM(u8);
 static void Task_ShowTMHMContainedMessage(u8);
 static void UseTMHMYesNo(u8);
 static void UseTMHM(u8);
-static void Task_StartUseRepel(u8);
-static void Task_StartUseLure(u8 taskId);
-static void Task_UseRepel(u8);
-static void Task_UseLure(u8 taskId);
+//static void Task_StartUseRepel(u8);
+//static void Task_StartUseLure(u8 taskId);
+//static void Task_UseRepel(u8);
+//static void Task_UseLure(u8 taskId);
 static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
@@ -95,6 +97,8 @@ static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the Poké Flute.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the Poké Flute.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The Poké Flute awakened sleeping\nPokémon.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_RepelActivated[] = _("{PLAYER} activated their Repel.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_RepelDeactivated[] = _("{PLAYER} deactivated their Repel.{PAUSE_UNTIL_PRESS}");
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -264,7 +268,7 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
         else
             DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOn, CloseItemMessage);
     }
-    FlagToggle(I_EXP_SHARE_FLAG);
+    FlagToggle( );
 #else
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
@@ -957,6 +961,59 @@ static void RemoveUsedItem(void)
 
 void ItemUseOutOfBattle_Repel(u8 taskId)
 {
+    sItemUseOnFieldCB = ItemUseOnFieldCB_Repel;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void ItemUseOnFieldCB_Repel(u8 taskId)
+{
+    //FlagToggle    -  see expshare
+    if (!FlagGet(FLAG_REPEL_ACTIVE)) {
+        if (!gTasks[taskId].data[2]) { // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_RepelActivated, Task_CloseCantUseKeyItemMessage);
+        } else {
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_RepelActivated, CloseItemMessage);
+        }
+    } else {
+        if (!gTasks[taskId].data[2]) { // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_RepelDeactivated, Task_CloseCantUseKeyItemMessage);
+        } else {
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_RepelDeactivated, CloseItemMessage);
+        }
+    }
+    FlagToggle(FLAG_REPEL_ACTIVE);
+}
+/*
+    if (!FlagGet(FLAG_REPEL_ACTIVE)) {
+        FlagSet(FLAG_REPEL_ACTIVE);
+        //DisplayItemMessage(taskId, FONT_NORMAL, gText_RepelActivated, CloseItemMessage);
+		DisplayItemMessageOnField(taskId, sText_RepelActivated, Task_CloseRepelMessage);
+    } else {
+        FlagClear(FLAG_REPEL_ACTIVE);
+        //DisplayItemMessage(taskId, FONT_NORMAL, gText_RepelDeactivated, CloseItemMessage);
+		DisplayItemMessageOnField(taskId, sText_RepelDeactivated, Task_CloseRepelMessage);
+    //FollowerNPC_HandleBike();
+    //ScriptUnfreezeObjectEvents();
+    //UnlockPlayerFieldControls();
+    //DestroyTask(taskId);
+    }
+*/
+
+/*
+static void Task_CloseRepelMessage(u8 taskId)
+{
+    ClearDialogWindowAndFrame(0, TRUE);
+    DestroyTask(taskId);
+    ScriptUnfreezeObjectEvents();
+    UnlockPlayerFieldControls();
+
+}
+*/
+
+
+/*
+void ItemUseOutOfBattle_Repel(u8 taskId)
+{
     if (REPEL_STEP_COUNT == 0)
         gTasks[taskId].func = Task_StartUseRepel;
     else if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
@@ -992,6 +1049,8 @@ static void Task_UseRepel(u8 taskId)
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
 }
+*/
+
 void HandleUseExpiredRepel(struct ScriptContext *ctx)
 {
 #if VAR_LAST_REPEL_LURE_USED != 0
@@ -1001,6 +1060,17 @@ void HandleUseExpiredRepel(struct ScriptContext *ctx)
 
 void ItemUseOutOfBattle_Lure(u8 taskId)
 {
+    if (!FlagGet(FLAG_LURE_ACTIVE)) {
+        FlagSet(FLAG_LURE_ACTIVE);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_LureActivated, CloseItemMessage);
+    } else {
+        FlagClear(FLAG_LURE_ACTIVE);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_LureDeactivated, CloseItemMessage);
+    }
+}
+/*
+void ItemUseOutOfBattle_Lure(u8 taskId)
+{
     if (LURE_STEP_COUNT == 0)
         gTasks[taskId].func = Task_StartUseLure;
     else if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
@@ -1008,7 +1078,8 @@ void ItemUseOutOfBattle_Lure(u8 taskId)
     else
         DisplayItemMessageInBattlePyramid(taskId, gText_LureEffectsLingered, Task_CloseBattlePyramidBagMessage);
 }
-
+*/
+/*
 static void Task_StartUseLure(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
@@ -1036,6 +1107,7 @@ static void Task_UseLure(u8 taskId)
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
 }
+*/
 
 void HandleUseExpiredLure(struct ScriptContext *ctx)
 {

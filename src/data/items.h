@@ -14589,6 +14589,38 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_KEY_REPEL] =
+    {
+        .name = ITEM_NAME("Repel"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Repels weak wild\n"
+            "Pokémon while\n"
+            "active."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Repel,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_Repel,
+    },
+
+    [ITEM_KEY_LURE] =
+    {
+        .name = ITEM_NAME("Lure"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Makes Pokémon more\n"
+            "likely to appear\n"
+            "while active."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Lure,
+        .iconPic = gItemIcon_Lure,
+        .iconPalette = gItemIconPalette_Lure,
+    },
 };
 
 #undef ITEM_NAME
