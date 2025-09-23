@@ -60,3 +60,4 @@ __pycache__
 *.xlsx
 *.bak
 *.xcf
+/Writerside/
