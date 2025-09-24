@@ -91,6 +91,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DewfordTown_EventScript_TrendyPhraseBoy",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEWFORD_BRAWLY",
+      "graphics_id": "OBJ_EVENT_GFX_BRAWLY",
+      "x": 8,
+      "y": 17,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_SET_WALL_CLOCK"
     }
   ],
   "warp_events": [
@@ -116,10 +130,10 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 17,
+      "x": 18,
       "y": 14,
       "elevation": 0,
-      "dest_map": "MAP_DEWFORD_TOWN_HOUSE1",
+      "dest_map": "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F",
       "dest_warp_id": "0"
     },
     {
@@ -130,7 +144,62 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_BrawlyPackage"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_ShouldSeeBrawly"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_ShouldSeeBrawly"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_ShouldSeeBrawly"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_ShouldSeeBrawly"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var_value": "3",
+      "script": "DewfordTown_EventScript_ShouldSeeBrawly"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

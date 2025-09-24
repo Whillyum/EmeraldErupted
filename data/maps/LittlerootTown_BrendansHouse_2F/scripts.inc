@@ -11,6 +11,20 @@ LittlerootTown_BrendansHouse_2F_OnTransition:
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
+LittlerootTown_BrendansHouse_2F_EventScript_IsClockSet::
+	goto_if_unset FLAG_SET_WALL_CLOCK, LittlerootTown_BrendansHouse_2F_EventScript_ShouldSetClock
+
+LittlerootTown_BrendansHouse_2F_EventScript_ShouldSetClock::
+	lockall
+	msgbox PlayersHouse_2F_Text_ShouldSetClock, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Common_Movement_WalkLeft
+	return
+
+PlayersHouse_2F_Text_ShouldSetClock::
+    .string "I should set my clock\n"
+	.string "before leaving.$"
+
 LittlerootTown_BrendansHouse_2F_EventScript_CheckShouldUpdateBrendanPos::
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_TryUpdateBrendanPos
 	goto_if_ge VAR_BIRCH_LAB_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_Ret

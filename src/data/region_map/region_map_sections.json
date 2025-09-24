@@ -173,7 +173,7 @@
       "name": "Route 106",
       "x": 0,
       "y": 13,
-      "width": 2,
+      "width": 3,
       "height": 1
     },
     {
@@ -211,18 +211,18 @@
     {
       "id": "MAPSEC_ROUTE_111",
       "name": "Route 111",
-      "x": 8,
-      "y": 0,
+      "x": 4,
+      "y": 1,
       "width": 1,
-      "height": 6
+      "height": 5
     },
     {
       "id": "MAPSEC_ROUTE_112",
       "name": "Route 112",
-      "x": 6,
-      "y": 3,
+      "x": 7,
+      "y": 1,
       "width": 2,
-      "height": 1
+      "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_113",
@@ -252,7 +252,7 @@
       "id": "MAPSEC_ROUTE_116",
       "name": "Route 116",
       "x": 1,
-      "y": 5,
+      "y": 7,
       "width": 4,
       "height": 1
     },
@@ -444,7 +444,7 @@
       "id": "MAPSEC_GRANITE_CAVE",
       "name": "Granite Cave",
       "x": 1,
-      "y": 13,
+      "y": 14,
       "width": 1,
       "height": 1
     },
@@ -526,12 +526,11 @@
       "x": 16,
       "y": 4,
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "id": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "{AQUA} Hideout",
-      "name_clone": true,
       "x": 19,
       "y": 3,
       "width": 1,
@@ -588,15 +587,15 @@
     {
       "id": "MAPSEC_SOUTHERN_ISLAND",
       "name": "Southern Island",
-      "x": 12,
-      "y": 14,
+      "x": 17,
+      "y": 11,
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "id": "MAPSEC_FIERY_PATH",
       "name": "Fiery Path",
-      "x": 6,
+      "x": 4,
       "y": 3,
       "width": 1,
       "height": 1
@@ -644,7 +643,7 @@
     {
       "id": "MAPSEC_SCORCHED_SLAB",
       "name": "Scorched Slab",
-      "x": 13,
+      "x": 8,
       "y": 0,
       "width": 1,
       "height": 1
@@ -652,8 +651,8 @@
     {
       "id": "MAPSEC_ISLAND_CAVE",
       "name": "Island Cave",
-      "x": 0,
-      "y": 10,
+      "x": 18,
+      "y": 12,
       "width": 1,
       "height": 1
     },
@@ -661,7 +660,7 @@
       "id": "MAPSEC_DESERT_RUINS",
       "name": "Desert Ruins",
       "x": 8,
-      "y": 3,
+      "y": 2,
       "width": 1,
       "height": 1
     },
@@ -690,8 +689,7 @@
       "name": "Secret Base"
     },
     {
-      "id": "MAPSEC_DYNAMIC",
-      "name": ""
+      "id": "MAPSEC_DYNAMIC"
     },
     {
       "id": "MAPSEC_PALLET_TOWN",
@@ -739,13 +737,11 @@
     },
     {
       "id": "MAPSEC_ROUTE_4_POKECENTER",
-      "name": "Route 4",
-      "name_clone": true
+      "name": "Route 4"
     },
     {
       "id": "MAPSEC_ROUTE_10_POKECENTER",
-      "name": "Route 10",
-      "name_clone": true
+      "name": "Route 10"
     },
     {
       "id": "MAPSEC_ROUTE_1",
@@ -849,7 +845,11 @@
     },
     {
       "id": "MAPSEC_VIRIDIAN_FOREST",
-      "name": "Viridian Forest"
+      "name": "Viridian Forest",
+      "x": 2,
+      "y": 12,
+      "width": 3,
+      "height": 1
     },
     {
       "id": "MAPSEC_MT_MOON",
@@ -865,8 +865,7 @@
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
-      "name": "Underground Path",
-      "name_clone": true
+      "name": "Underground Path"
     },
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
@@ -874,8 +873,7 @@
     },
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
-      "name": "Victory Road",
-      "name_clone": true
+      "name": "Victory Road"
     },
     {
       "id": "MAPSEC_ROCKET_HIDEOUT",
@@ -891,8 +889,7 @@
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
-      "name": "Safari Zone",
-      "name_clone": true
+      "name": "Safari Zone"
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
@@ -952,7 +949,11 @@
     },
     {
       "id": "MAPSEC_TREASURE_BEACH",
-      "name": "Treasure Beach"
+      "name": "Treasure Beach",
+      "x": 24,
+      "y": 3,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_CAPE_BRINK",
@@ -1052,11 +1053,19 @@
     },
     {
       "id": "MAPSEC_BERRY_FOREST",
-      "name": "Berry Forest"
+      "name": "Berry Forest",
+      "x": 2,
+      "y": 12,
+      "width": 3,
+      "height": 1
     },
     {
       "id": "MAPSEC_ICEFALL_CAVE",
-      "name": "Icefall Cave"
+      "name": "Icefall Cave",
+      "x": 25,
+      "y": 3,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_ROCKET_WAREHOUSE",
@@ -1064,8 +1073,7 @@
     },
     {
       "id": "MAPSEC_TRAINER_TOWER_2",
-      "name": "Trainer Tower",
-      "name_clone": true
+      "name": "Trainer Tower"
     },
     {
       "id": "MAPSEC_DOTTED_HOLE",
