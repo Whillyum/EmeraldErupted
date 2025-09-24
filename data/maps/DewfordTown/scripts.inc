@@ -6,6 +6,147 @@ DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	end
 
+DewfordTown_EventScript_ShouldSeeBrawly::
+    msgbox DewfordTown_Text_ShouldSeeBrawly, MSGBOX_DEFAULT
+    closemessage
+	applymovement LOCALID_PLAYER, Common_Movement_WalkDown
+    waitmovement 0
+    end
+
+DewfordTown_Text_ShouldSeeBrawly:
+    .string "I should see Brawly at the Gym$"
+
+DewfordTown_EventScript_BrawlyPackage::
+	lock
+	opendoor 8, 17
+	playse SE_SLIDING_DOOR
+	waitdooranim
+	addobject LOCALID_DEWFORD_BRAWLY
+	applymovement LOCALID_PLAYER, DewfordTown_Movement_BrawlyEncounter_Player
+	applymovement LOCALID_DEWFORD_BRAWLY, DewfordTown_Movement_BrawlyEncounter_Brawly
+	closedoor 8, 17
+	waitmovement 0
+	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox DewfordTown_Text_BrawlyPackage, MSGBOX_DEFAULT
+	closemessage
+	msgbox DewfordTown_Text_BrawlyPackage_Pokedex, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
+	playfanfare MUS_OBTAIN_ITEM
+	message DewfordTown_Text_ReceivedPokedex
+	waitfanfare
+	msgbox DewfordTown_Text_BrawlyPackage_Pokenav, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	playfanfare MUS_OBTAIN_ITEM
+	message DewfordTown_Text_ReceivedPokenav
+	waitfanfare
+	msgbox DewfordTown_Text_BrawlyPackage_RunningShoes, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_SYS_B_DASH
+	playfanfare MUS_OBTAIN_ITEM
+	message DewfordTown_Text_ReceivedRunningShoes
+	waitfanfare
+	msgbox DewfordTown_Text_BrawlyPackage_Repel, MSGBOX_DEFAULT
+	closemessage
+	giveitem ITEM_KEY_REPEL
+	msgbox DewfordTown_Text_BrawlyPackage_Pokeballs, MSGBOX_DEFAULT
+	closemessage
+	giveitem ITEM_POKE_BALL, 30
+	msgbox DewfordTown_Text_BrawlyPackage_Pokemon, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_RESCUED_BIRCH
+	callnative StartNewPokeballCaseUI
+	waitstate
+	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_FaceRight
+	msgbox DewfordTown_Text_BrawlyEncounter_ChallengeMe, MSGBOX_DEFAULT
+	closemessage
+	opendoor 8, 17
+	playse SE_SLIDING_DOOR
+	waitdooranim
+	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_WalkUp
+	waitmovement 0
+	removeobject LOCALID_DEWFORD_BRAWLY
+	closedoor 8, 17
+	playse SE_SLIDING_DOOR
+	waitdooranim
+	setvar VAR_LITTLEROOT_INTRO_STATE, 4
+	releaseall
+	end
+
+DewfordTown_Text_ReceivedPokedex:
+	.string "{PLAYER} received the Pokédex!$"
+
+DewfordTown_Text_ReceivedPokenav:
+	.string "{PLAYER} received the Pokénav!$"
+
+DewfordTown_Text_ReceivedRunningShoes:
+	.string "{PLAYER} received the Running Shoes!$"
+
+DewfordTown_Text_BrawlyPackage:
+	.string "Brawly: Ah {PLAYER}!\n"
+	.string "I was just coming to see you.\p"
+	.string "Professor Birch sent over this\n"
+	.string "package for you.\p"
+	.string "Let's see...$"
+
+DewfordTown_Text_BrawlyPackage_Pokedex:
+	.string "There's a Pokédex,$"
+
+DewfordTown_Text_BrawlyPackage_Pokenav:
+	.string "A PokéNav,$"
+
+DewfordTown_Text_BrawlyPackage_RunningShoes:
+	.string "Some Running Shoes,$"
+
+DewfordTown_Text_BrawlyPackage_Repel:
+	.string "A Repel,\n"
+	.string "and a note!\p"
+	.string "'Now a toggleable Key Item'\n"
+	.string "Whatever that means.$"
+
+DewfordTown_Text_BrawlyPackage_Pokeballs:
+	.string "Some Poké Balls,$"
+
+DewfordTown_Text_BrawlyPackage_Pokemon:
+	.string "And finally you get to choose\n"
+	.string "one of these Pokémon!$"
+
+DewfordTown_Text_BrawlyEncounter_WildPokemon::
+	.string "Hmmm, wild Pokémon don't\n"
+	.string "usually come into town.\p"
+	.string "They normally stay on Route 106\n"
+	.string "to the North.$"
+
+DewfordTown_Text_BrawlyEncounter_ChallengeMe:
+	.string "Wild Pokémon can be found North\n"
+	.string "on Route 106.\p"
+	.string "You should train there {PLAYER}.\p"
+	.string "Get a bit stronger and then come\n"
+	.string "challenge me, OK?\p"
+	.string "I'll be waiting!$"
+
+
+DewfordTown_Movement_BrawlyEncounter_Player::
+	face_left
+	lock_facing_direction
+	walk_right
+	step_end
+
+DewfordTown_Movement_BrawlyEncounter_Brawly::
+	walk_down
+	step_end
+
 DewfordTown_EventScript_Briney::
 	lock
 	faceplayer
