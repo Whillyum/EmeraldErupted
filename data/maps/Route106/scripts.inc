@@ -46,3 +46,11 @@ Route106_Text_TrainerTips:
 	.string "Advice on catching Pokémon with a Rod:\n"
 	.string "Press the A Button if you get a bite.$"
 
+Route106_EventScript_LittlerootWoodsSign::
+	msgbox Route106_Text_LittlerootWoodsSign, MSGBOX_SIGN
+	end
+
+Route106_Text_LittlerootWoodsSign:
+	.string "North to Littleroot Woods.\n"
+	.string "A charming forest, home to many Pokémon.$"
+
