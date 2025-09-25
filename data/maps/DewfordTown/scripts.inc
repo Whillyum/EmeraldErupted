@@ -4,7 +4,14 @@ DewfordTown_MapScripts::
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
+	goto_if_unset FLAG_SAILED_TO_LITTLEROOT, DewfordTown_Show_Briney
 	end
+
+DewfordTown_Show_Briney:
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	end
+
 
 DewfordTown_EventScript_ShouldSeeBrawly::
     msgbox DewfordTown_Text_ShouldSeeBrawly, MSGBOX_DEFAULT
@@ -112,7 +119,7 @@ DewfordTown_Text_BrawlyPackage_RunningShoes:
 DewfordTown_Text_BrawlyPackage_Repel:
 	.string "A Repel,\n"
 	.string "and a note!\p"
-	.string "'Now a toggleable Key Item'\n"
+	.string "Now a toggleable Key Item\n"
 	.string "Whatever that means.$"
 
 DewfordTown_Text_BrawlyPackage_Pokeballs:
@@ -145,6 +152,156 @@ DewfordTown_Movement_BrawlyEncounter_Player::
 
 DewfordTown_Movement_BrawlyEncounter_Brawly::
 	walk_down
+	step_end
+
+DewfordTown_EventScript_BrineyBrawlyCheck::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE02_GET, DewfordTown_EventScript_BrineyPostBrawly
+	goto_if_unset FLAG_BADGE02_GET, DewfordTown_EventScript_BrineyPreBrawly
+	end
+
+DewfordTown_EventScript_BrineyPreBrawly::
+	msgbox DewfordTown_Text_Briney_ChallengeBrawly, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+DewfordTown_Text_Briney_ChallengeBrawly:
+	.string "Mr. Briney: Ho young'un!\p"
+	.string "You should challenge Brawly before\n"
+	.string "venturing off the island.\p"
+	.string "Come back and see me when.\n"
+	.string "you have Knuckle Badge.$"
+
+
+DewfordTown_EventScript_BrineyPostBrawly::
+	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_LetterCheck
+	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_BrineyLetterDelivered
+	release
+	end
+
+DewfordTown_EventScript_LetterCheck::
+	checkitem ITEM_LETTER
+	compare VAR_RESULT, 1
+	goto_if_eq DewfordTown_EventScript_HasLetter
+	goto_if_lt DewfordTown_EventScript_BrineyGiveLetter
+	end
+
+DewfordTown_EventScript_BrineyGiveLetter::
+	msgbox DewfordTown_Text_Briney_DeliverLetter, MSGBOX_DEFAULT
+	closemessage
+	giveitem ITEM_LETTER
+	release
+	end
+
+DewfordTown_EventScript_HasLetter::
+	msgbox DewfordTown_Text_Briney_LetterUpdate, MSGBOX_DEFAULT
+	closemessage
+	end
+
+DewfordTown_Text_Briney_LetterUpdate:
+	.string "Mr. Briney: Oh, you still have\n"
+	.string "that Letter for Steven?\p"
+	.string "Please deliver it to him, then\n"
+	.string "we can set sail for Littleroot.$"
+
+DewfordTown_EventScript_BrineyLetterDelivered::
+	msgbox DewfordTown_Text_Briney_LetterDelivered, MSGBOX_DEFAULT
+	closemessage
+	message DewfordTown_Text_SailToLittleroot
+	waitmessage
+	multichoicedefault 21, 6, MULTI_YESNO, 1, FALSE
+	switch VAR_RESULT
+	case 0, DewfordTown_EventScript_ChooseYes
+	case 1, DewfordTown_EventScript_CancelSailSelect
+	case MULTI_B_PRESSED, DewfordTown_EventScript_CancelSailSelect
+	end
+
+DewfordTown_Text_Briney_DeliverLetter:
+	.string "Mr. Briney: Before I take you to the\n"
+	.string "mainland, could you do me a favor?\p"
+	.string "Would you please deliver this to Steven?\n"
+	.string "He is probably in Dewford Cave.$"
+
+DewfordTown_Text_Briney_LetterDelivered:
+	.string "Mr. Briney: Oh, you delivered the Letter!\n"
+	.string "Thanks a bunch!\p"
+	.string "Littleroot ahoy!$"
+
+DewfordTown_Text_SailToLittleroot:
+	.string "Mr. Briney: So, do you want to set sail\n"
+	.string "for Littleroot Town now?$"
+
+DewfordTown_EventScript_ChooseYes::
+	msgbox DewfordTown_Text_Briney_LittlerootSettingSail, MSGBOX_DEFAULT
+	closemessage
+	goto DewfordTown_EventScript_SailToLittleroot
+	release
+	end
+
+DewfordTown_Text_Briney_LittlerootSettingSail:
+	.string "Mr. Briney: Littleroot, it is!\p"
+	.string "Anchors aweigh!\n"
+	.string "Peeko, we're setting sail, my darling!$"
+
+DewfordTown_EventScript_SailToLittleroot::
+	call EventScript_BackupMrBrineyLocation
+	setobjectsubpriority LOCALID_DEWFORD_BRINEY, MAP_DEWFORD_TOWN, 0
+	setobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN, 0
+	applymovement LOCALID_DEWFORD_BRINEY, DewfordTown_Movement_BrineyBoardBoat
+	waitmovement 0
+	removeobject LOCALID_DEWFORD_BRINEY
+	applymovement LOCALID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
+	waitmovement 0
+	hideobjectat LOCALID_PLAYER, MAP_DEWFORD_TOWN
+	call Common_EventScript_PlayBrineysBoatMusic
+	applymovement LOCALID_DEWFORD_BOAT, DewfordTown_Movement_SailToLittleroot
+	applymovement LOCALID_PLAYER, DewfordTown_Movement_SailToLittleroot
+	waitmovement 0
+	showobjectat LOCALID_PLAYER, MAP_ROUTE106
+	call Common_EventScript_StopBrineysBoatMusic
+	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
+	waitmovement 0
+	showobjectat LOCALID_PLAYER, MAP_ROUTE106
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_SAILED_TO_LITTLEROOT
+	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
+	setvar VAR_BOARD_BRINEY_BOAT_STATE, 3
+	resetobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	waitstate
+	release
+	end
+
+DewfordTown_Movement_SailToLittleroot:
+	walk_up
+	walk_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_up
+	walk_up
+	walk_left
+	walk_up
+	walk_up
+	walk_fast_up
+	walk_fast_up
+	walk_up
+	walk_up
 	step_end
 
 DewfordTown_EventScript_Briney::

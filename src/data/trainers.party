@@ -4833,7 +4833,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Machop
-Level: 16
+Level: 6
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Karate Chop
 - Low Kick
@@ -4841,7 +4841,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Bulk Up
 
 Meditite
-Level: 16
+Level: 6
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Focus Punch
 - Light Screen
@@ -4849,7 +4849,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Bulk Up
 
 Makuhita @ Sitrus Berry
-Level: 19
+Level: 6
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Arm Thrust
 - Vital Throw
@@ -7854,7 +7854,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Meditite
-Level: 13
+Level: 4
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_CYNDY_1 ===
@@ -10604,7 +10604,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Makuhita
-Level: 13
+Level: 4
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_SYLVIA ===
