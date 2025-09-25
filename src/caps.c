@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "caps.h"
 #include "pokemon.h"
+#include "constants/vars.h"
 
 
 u32 GetCurrentLevelCap(void)
@@ -20,6 +21,20 @@ u32 GetCurrentLevelCap(void)
         {FLAG_IS_CHAMPION, 58},
     };
 
+    static const u16 sLevelCapBadgeMap[][2] =
+    {
+        {0, 8},
+        {1, 15},
+        {2, 25},
+        {3, 30},
+        {4, 35},
+        {5, 40},
+        {6, 45},
+        {7, 50},
+        {8, 100},    //9 champion, could add more in here for more granular scaling
+    };
+
+
     u32 i;
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
@@ -33,6 +48,15 @@ u32 GetCurrentLevelCap(void)
     else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
     {
         return VarGet(B_LEVEL_CAP_VARIABLE);
+    }
+    else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_BADGE_NUMBER)
+    {
+        u8 badgeNumber = VarGet(VAR_BADGE_NUMBER);
+        return sLevelCapBadgeMap[badgeNumber][1];
+    }
+    else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_NONE && B_EXP_CAP_TYPE == EXP_CAP_NONE)
+    {
+        return MAX_LEVEL;
     }
 
     return MAX_LEVEL;
@@ -97,6 +121,18 @@ u32 GetCurrentEVCap(void)
         {FLAG_IS_CHAMPION, MAX_TOTAL_EVS},
     };
 
+    static const u16 sEvCapBadgeMap[][2] = {
+        {0, 64},
+        {1, 128},
+        {2, 192},
+        {3, 256},
+        {4, 320},
+        {5, 384},
+        {6, 448},
+        {7, 510},
+        {8, 510}, //9 champion, could add more in here for more granular scaling
+    };
+
     if (B_EV_CAP_TYPE == EV_CAP_FLAG_LIST)
     {
         for (u32 evCap = 0; evCap < ARRAY_COUNT(sEvCapFlagMap); evCap++)
@@ -112,6 +148,15 @@ u32 GetCurrentEVCap(void)
     else if (B_EV_CAP_TYPE == EV_CAP_NO_GAIN)
     {
         return 0;
+    }
+    else if (B_EV_CAP_TYPE == EV_CAP_BADGE_NUMBER)
+    {
+        u8 badgeNumber = VarGet(VAR_BADGE_NUMBER);
+        return sEvCapBadgeMap[badgeNumber][1];
+    }
+    else if (B_EV_CAP_TYPE == EV_CAP_NONE)
+    {
+        return MAX_TOTAL_EVS;
     }
 
     return MAX_TOTAL_EVS;

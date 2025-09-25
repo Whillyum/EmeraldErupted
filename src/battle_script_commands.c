@@ -69,6 +69,7 @@
 #include "data/battle_move_effects.h"
 #include "follower_npc.h"
 #include "load_save.h"
+#include "constants/vars.h"
 
 // table to avoid ugly powing on gba (courtesy of doesnt)
 // this returns (i^2.5)/4
@@ -13677,6 +13678,7 @@ static void Cmd_handleballthrow(void)
 
     u16 ballMultiplier = 100;
     s8 ballAddition = 0;
+    u8 badgeMultiplier = VarGet(VAR_BADGE_NUMBER) + 1 || 1; //Multiply catch rate by number of badges + 1
 
     if (gBattleControllerExecFlags)
         return;
@@ -13880,9 +13882,15 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = catchRate + ballAddition;
 
+        odds = (catchRate * badgeMultiplier * ballMultiplier / 100)
+        * (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2)
+        / (3 * gBattleMons[gBattlerTarget].maxHP);
+
+        /*
         odds = (catchRate * ballMultiplier / 100)
             * (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2)
             / (3 * gBattleMons[gBattlerTarget].maxHP);
+        */
 
         if (gBattleMons[gBattlerTarget].status1 & STATUS1_INCAPACITATED)
             odds *= 2;
