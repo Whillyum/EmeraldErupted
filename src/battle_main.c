@@ -76,6 +76,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "cable_club.h"
+#include "caps.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -1915,6 +1916,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             u32 otIdType = OT_ID_RANDOM_NO_SHINY;
             u32 fixedOtId = 0;
             u32 abilityNum = 0;
+			u8 levelCap = GetCurrentLevelCap();
 
             if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES)
                 personalityValue = 0x80;
@@ -1936,11 +1938,16 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otIdType = OT_ID_PRESET;
                 fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+			//u8 partyLevel = partyData[monIndex].lvl;
+			//partyLevel = partyData[monIndex].lvl == 100 ? 0 : partyData[monIndex].lvl;
+			u8 monLevel = levelCap - partyData[monIndex].lvl;
+			monLevel = monLevel > 1 ? monLevel : 1;
+            CreateMon(&party[i], partyData[monIndex].species, monLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            //SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+			SetMonData(&party[i], MON_DATA_IVS, 0);
             if (partyData[monIndex].ev != NULL)
             {
                 SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
