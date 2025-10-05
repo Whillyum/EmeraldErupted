@@ -3,12 +3,12 @@
 
 enum PokeBall
 {
-    BALL_STRANGE = 0,
-    BALL_POKE = 1,
+    BALL_POKE = 0,
+    BALL_PREMIER = 1,
     BALL_GREAT = 2,
     BALL_ULTRA = 3,
     BALL_MASTER = 4,
-    BALL_PREMIER = 5,
+    BALL_STRANGE = 5,
     BALL_HEAL = 6,
     BALL_NET = 7,
     BALL_NEST = 8,
