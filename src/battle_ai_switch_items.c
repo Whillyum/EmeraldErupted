@@ -1400,10 +1400,10 @@ void AI_TrySwitchOrUseItem(u32 battler)
             gAiLogicData->monToSwitchInId[battler] = gBattleStruct->AI_monToSwitchIntoId[battler];
             return;
         }
-        else if (ShouldUseItem(battler))
+        /*else if (ShouldUseItem(battler))
         {
             return;
-        }
+        }*/
     }
 
     BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_MOVE, BATTLE_OPPOSITE(battler) << 8);

@@ -91,6 +91,8 @@ DewfordTown_EventScript_BrawlyPackage::
 	playse SE_SLIDING_DOOR
 	waitdooranim
 	setvar VAR_LITTLEROOT_INTRO_STATE, 4
+	setflag FLAG_NO_BAG_USE
+	setflag FLAG_SLEEP_CLAUSE
 	releaseall
 	end
 
