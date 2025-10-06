@@ -66,6 +66,9 @@ DewfordTown_EventScript_BrawlyPackage::
 	msgbox DewfordTown_Text_BrawlyPackage_Repel, MSGBOX_DEFAULT
 	closemessage
 	giveitem ITEM_KEY_REPEL
+	msgbox DewfordTown_Text_BrawlyPackage_ExpShare, MSGBOX_DEFAULT
+	closemessage
+	giveitem ITEM_EXP_SHARE
 	msgbox DewfordTown_Text_BrawlyPackage_Pokeballs, MSGBOX_DEFAULT
 	closemessage
 	giveitem ITEM_POKE_BALL, 30
@@ -119,8 +122,12 @@ DewfordTown_Text_BrawlyPackage_RunningShoes:
 DewfordTown_Text_BrawlyPackage_Repel:
 	.string "A Repel,\n"
 	.string "and a note!\p"
-	.string "Now a toggleable Key Item\n"
+	.string "Now a toggleable Key Item!\n"
 	.string "Whatever that means.$"
+
+DewfordTown_Text_BrawlyPackage_ExpShare:
+    .string "An Exp. Share,\p"
+	.string "Also a toggleable Key Item.$"
 
 DewfordTown_Text_BrawlyPackage_Pokeballs:
 	.string "Some Poké Balls,$"
@@ -141,8 +148,9 @@ DewfordTown_Text_BrawlyEncounter_ChallengeMe:
 	.string "You should train there {PLAYER}.\p"
 	.string "Get a bit stronger and then come\n"
 	.string "challenge me, OK?\p"
+	.string "Or maybe my Gym Trainers will\n"
+	.string "be enough practice.\p"
 	.string "I'll be waiting!$"
-
 
 DewfordTown_Movement_BrawlyEncounter_Player::
 	face_left

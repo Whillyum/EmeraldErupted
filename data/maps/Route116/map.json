@@ -14,14 +14,19 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_VERDANTURF_TOWN",
+      "map": "MAP_ROUTE103",
       "offset": 80,
       "direction": "down"
     },
     {
-      "map": "MAP_RUSTBORO_CITY",
-      "offset": 0,
+      "map": "MAP_ROUTE104",
+      "offset": -5,
       "direction": "left"
+    },
+    {
+      "map": "MAP_VERDANTURF_TOWN",
+      "offset": 80,
+      "direction": "up"
     }
   ],
   "object_events": [
@@ -159,7 +164,7 @@
       "local_id": "LOCALID_ROUTE116_BRINEY",
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
       "x": 46,
-      "y": 9,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -395,7 +400,7 @@
   "warp_events": [
     {
       "x": 47,
-      "y": 8,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_RUSTURF_TUNNEL",
       "dest_warp_id": "0"
@@ -408,8 +413,8 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 65,
-      "y": 10,
+      "x": 74,
+      "y": 8,
       "elevation": 0,
       "dest_map": "MAP_RUSTURF_TUNNEL",
       "dest_warp_id": "2"
@@ -433,7 +438,7 @@
     {
       "type": "trigger",
       "x": 47,
-      "y": 9,
+      "y": 8,
       "elevation": 3,
       "var": "VAR_ROUTE116_STATE",
       "var_value": "1",
@@ -452,7 +457,7 @@
     {
       "type": "sign",
       "x": 48,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route116_EventScript_RusturfTunnelSign"

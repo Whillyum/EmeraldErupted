@@ -132,17 +132,17 @@ struct MonChoiceData{ // This is the format used to define a mon, everything lef
 //
 static const struct MonChoiceData sStarterChoices[9] = 
 {
-    [BALL_TOP_FIRST]        = {SPECIES_TREECKO, 5, 0, BALL_POKE, 0, 0, 0, {}, {}, {MOVE_FIRE_BLAST, MOVE_DRAGON_RAGE, MOVE_WATER_GUN, MOVE_SONIC_BOOM}, 0, 0, 0},
-    [BALL_TOP_SECOND]       = {SPECIES_MUDKIP, 5},
-    [BALL_MIDDLE_FIRST]     = {SPECIES_TORCHIC, 5},
+    [BALL_TOP_FIRST]        = {SPECIES_TREECKO, 5, 0, 1, 0, 0, 0, {}, {}, {MOVE_FIRE_BLAST, MOVE_DRAGON_RAGE, MOVE_WATER_GUN, MOVE_SONIC_BOOM}, 0, 0, 0},
+    [BALL_TOP_SECOND]       = {SPECIES_MUDKIP, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
+    [BALL_MIDDLE_FIRST]     = {SPECIES_TORCHIC, 5, 0, 1, 0, 0, 0, {}, {}, {MOVE_AERIAL_ACE}, 0, 0, 0},
 
-    [BALL_TOP_THIRD]        = {SPECIES_CHIKORITA, 5},
-    [BALL_TOP_FOURTH]       = {SPECIES_TOTODILE, 5},
-    [BALL_MIDDLE_THIRD]     = {SPECIES_CYNDAQUIL, 5},
+    [BALL_TOP_THIRD]        = {SPECIES_CHIKORITA, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
+    [BALL_TOP_FOURTH]       = {SPECIES_TOTODILE, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
+    [BALL_MIDDLE_THIRD]     = {SPECIES_CYNDAQUIL, 5, 0, 1, 1, 0, 0, {}, {}, {}, 0, 0, 0},
 
-    [BALL_MIDDLE_SECOND]    = {SPECIES_BULBASAUR, 5},
-    [BALL_BOTTOM_FIRST]     = {SPECIES_CHARMANDER, 5},
-    [BALL_BOTTOM_SECOND]    = {SPECIES_SQUIRTLE, 5},
+    [BALL_MIDDLE_SECOND]    = {SPECIES_BULBASAUR, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
+    [BALL_BOTTOM_FIRST]     = {SPECIES_CHARMANDER, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
+    [BALL_BOTTOM_SECOND]    = {SPECIES_SQUIRTLE, 5, 0, 1, 0, 0, 0, {}, {}, {}, 0, 0, 0},
 };
 
 //==========EWRAM==========//
