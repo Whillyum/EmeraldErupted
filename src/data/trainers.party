@@ -4826,29 +4826,16 @@ Items: Super Potion / Super Potion
 Double Battle: No
 AI: Basic Trainer
 
-Machop
-Level: 0
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
-
 Meditite
 Level: 0
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
 - Light Screen
 - Reflect
 - Bulk Up
 
 Makuhita @ Sitrus Berry
 Level: -1
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
 - Bulk Up
+- Focus Energy
 
 === TRAINER_WATTSON_1 ===
 Name: Wattson

@@ -1,5 +1,21 @@
 Route106_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route106_OnTransition
 	.byte 0
+
+Route106_OnTransition:
+	call_if_ne VAR_BRINEY_LOCATION, 4, Route106_Hide_Briney
+	call_if_eq VAR_BRINEY_LOCATION, 4, Route106_Show_Briney
+	end
+
+Route106_Hide_Briney::
+	setflag FLAG_HIDE_ROUTE_106_MR_BRINEY
+	setflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
+	end
+
+Route106_Show_Briney::
+    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
+    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
+    end
 
 Route106_EventScript_TrainerTipsSign::
 	msgbox Route106_Text_TrainerTips, MSGBOX_SIGN
@@ -53,4 +69,45 @@ Route106_EventScript_LittlerootWoodsSign::
 Route106_Text_LittlerootWoodsSign:
 	.string "North to Littleroot Woods.\n"
 	.string "A charming forest, home to many Pokémon.$"
+
+Route106_EventScript_Briney::
+	lock
+    faceplayer
+    message Route106_Text_BackToDewford
+    waitmessage
+    multichoicedefault 21, 6, MULTI_YESNO, 2, FALSE
+    switch VAR_RESULT
+    case 0, Route106_EventScript_Yes
+    case 2, Route106_EventScript_CancelSailSelect
+    case MULTI_B_PRESSED, Route106_EventScript_CancelSailSelect
+    end
+
+Route106_Text_BackToDewford:
+	.string "Mr. Briney: So you want to be heading\n"
+	.string "back to Dewford Town?$"
+
+Route106_EventScript_Yes::
+	msgbox Route106_Text_Briney_DewfordSettingSail, MSGBOX_DEFAULT
+	closemessage
+	goto Route106_EventScript_SailToDewford
+	release
+	end
+
+Route106_Text_Briney_DewfordSettingSail:
+    .string "Mr. Briney: Aye aye!\n"
+    .string "We're setting sail for Dewford!$"
+
+Route106_EventScript_SailToDewford::
+	releaseall
+	end
+
+Route106_EventScript_CancelSailSelect::
+	msgbox Route106_Text_JustTellMeWhenYouNeedToSetSail, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route106_Text_JustTellMeWhenYouNeedToSetSail:
+	.string "Mr. Briney: You just tell me whenever\n"
+	.string "you need to set sail again!$"
 

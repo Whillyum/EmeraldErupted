@@ -25,13 +25,13 @@ DewfordTown_Text_ShouldSeeBrawly:
 
 DewfordTown_EventScript_BrawlyPackage::
 	lock
-	opendoor 8, 17
+	opendoor 18, 17
 	playse SE_SLIDING_DOOR
 	waitdooranim
 	addobject LOCALID_DEWFORD_BRAWLY
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_BrawlyEncounter_Player
 	applymovement LOCALID_DEWFORD_BRAWLY, DewfordTown_Movement_BrawlyEncounter_Brawly
-	closedoor 8, 17
+	closedoor 18, 17
 	waitmovement 0
 	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_ExclamationMark
 	waitmovement 0
@@ -81,13 +81,13 @@ DewfordTown_EventScript_BrawlyPackage::
 	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_FaceRight
 	msgbox DewfordTown_Text_BrawlyEncounter_ChallengeMe, MSGBOX_DEFAULT
 	closemessage
-	opendoor 8, 17
+	opendoor 18, 17
 	playse SE_SLIDING_DOOR
 	waitdooranim
 	applymovement LOCALID_DEWFORD_BRAWLY, Common_Movement_WalkUp
 	waitmovement 0
 	removeobject LOCALID_DEWFORD_BRAWLY
-	closedoor 8, 17
+	closedoor 18, 17
 	playse SE_SLIDING_DOOR
 	waitdooranim
 	setvar VAR_LITTLEROOT_INTRO_STATE, 4
@@ -271,20 +271,20 @@ DewfordTown_EventScript_SailToLittleroot::
 	waitmovement 0
 	showobjectat LOCALID_PLAYER, MAP_ROUTE106
 	call Common_EventScript_StopBrineysBoatMusic
-	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
+	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatLittleroot
 	waitmovement 0
 	showobjectat LOCALID_PLAYER, MAP_ROUTE106
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
+	clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
+	showobjectat LOCALID_ROUTE106_BRINEY, MAP_ROUTE106
+    showobjectat LOCALID_BOAT, MAP_ROUTE106
+    waitmovement 0
 	setflag FLAG_SAILED_TO_LITTLEROOT
 	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
-	setvar VAR_BOARD_BRINEY_BOAT_STATE, 3
+	setvar VAR_BRINEY_LOCATION, 4
+	call EventScript_ResetMrBriney
 	resetobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	waitstate
-	release
+	releaseall
 	end
 
 DewfordTown_Movement_SailToLittleroot:
@@ -884,6 +884,18 @@ DewfordTown_Movement_ExitBoatSlateport:
 	walk_up
 	walk_in_place_faster_down
 	step_end
+
+DewfordTown_Movement_ExitBoatLittleroot:
+    walk_up
+    walk_up
+    walk_right
+    step_end
+
+DewfordTown_Movement_BrineyExitBoatLittleroot:
+    walk_up
+    walk_up
+    face_right
+    step_end
 
 DewfordTown_Movement_BrineyBoardBoat:
 	walk_up

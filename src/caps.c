@@ -23,15 +23,15 @@ u32 GetCurrentLevelCap(void)
 
     static const u16 sLevelCapBadgeMap[][2] =
     {
-        {0, 8},
-        {1, 15},
-        {2, 25},
-        {3, 30},
-        {4, 35},
-        {5, 40},
-        {6, 45},
-        {7, 50},
-        {8, 100},    //9 champion, could add more in here for more granular scaling
+        {0, 10},    //Pre Brawly
+        {1, 15},    //Up to Oldale?
+        {2, 25},    //2nd Badge
+        {3, 30},    //3rd Badge
+        {4, 35},    //4th Badge
+        {5, 40},    //5th Badge
+        {6, 45},    //6th Badge
+        {7, 50},    //7th Badge
+        {8, 100},   //9 champion, could add more in here for more granular scaling
     };
 
 

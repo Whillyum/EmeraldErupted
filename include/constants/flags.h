@@ -44,10 +44,10 @@
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
 #define FLAG_SAILED_TO_LITTLEROOT    0x20 // Set to remove Briney from Dewford
-#define FLAG_NO_BAG_USE      0x21 // Unused Flag
-#define FLAG_SLEEP_CLAUSE    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_NO_BAG_USE      0x21 // Set to disable the use of the bag in battle
+#define FLAG_SLEEP_CLAUSE    0x22 // Set to enable Sleep Clause in battle
+#define FLAG_HIDE_ROUTE_106_MR_BRINEY   0x23 // Set to hide Briney on Route 106 when he's elsewhere
+#define FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT     0x24 // Set to hide Briney's boat on Route 106 when he's elsewhere
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
