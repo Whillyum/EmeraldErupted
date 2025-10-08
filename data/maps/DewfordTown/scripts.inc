@@ -236,8 +236,7 @@ DewfordTown_Text_Briney_DeliverLetter:
 
 DewfordTown_Text_Briney_LetterDelivered:
 	.string "Mr. Briney: Oh, you delivered the Letter!\n"
-	.string "Thanks a bunch!\p"
-	.string "Littleroot ahoy!$"
+	.string "Thanks a bunch!$"
 
 DewfordTown_Text_SailToLittleroot:
 	.string "Mr. Briney: So, do you want to set sail\n"
@@ -269,15 +268,15 @@ DewfordTown_EventScript_SailToLittleroot::
 	applymovement LOCALID_DEWFORD_BOAT, DewfordTown_Movement_SailToLittleroot
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_SailToLittleroot
 	waitmovement 0
+    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
+    showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
 	showobjectat LOCALID_PLAYER, MAP_ROUTE106
 	call Common_EventScript_StopBrineysBoatMusic
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatLittleroot
 	waitmovement 0
-	showobjectat LOCALID_PLAYER, MAP_ROUTE106
-    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
+	delay 40
 	clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
-	showobjectat LOCALID_ROUTE106_BRINEY, MAP_ROUTE106
-    showobjectat LOCALID_BOAT, MAP_ROUTE106
+    showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
     waitmovement 0
 	setflag FLAG_SAILED_TO_LITTLEROOT
 	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN

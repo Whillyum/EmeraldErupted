@@ -1,6 +1,21 @@
 GraniteCave_StevensRoom_MapScripts::
 	.byte 0
 
+GraniteCave_StevensRoom_EventScript_LetterCheck::
+	checkitem ITEM_LETTER
+	compare VAR_RESULT, 1
+	goto_if_eq GraniteCave_StevensRoom_EventScript_Steven
+	goto_if_lt GraniteCave_StevensRoom_EventScript_NoLetter
+	end
+
+GraniteCave_StevensRoom_EventScript_NoLetter::
+	msgbox GraniteCave_StevensRoom_Text_NoLetter, MSGBOX_NPC
+	end
+
+GraniteCave_StevensRoom_Text_NoLetter:
+	.string "The man is contemplating rocks.\n"
+	.string "Best not disturb him without reason$"
+
 GraniteCave_StevensRoom_EventScript_Steven::
 	lock
 	faceplayer
