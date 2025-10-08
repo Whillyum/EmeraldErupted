@@ -271,11 +271,21 @@ DewfordTown_EventScript_SailToLittleroot::
     clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
     showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
 	showobjectat LOCALID_PLAYER, MAP_ROUTE106
+	msgbox Test_1, MSGBOX_DEFAULT
+	closemessage
 	call Common_EventScript_StopBrineysBoatMusic
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatLittleroot
+	msgbox Test_2, MSGBOX_DEFAULT
+	closemessage
 	waitmovement 0
+	msgbox Test_3, MSGBOX_DEFAULT
+	closemessage
 	delay 40
+	msgbox Test_4, MSGBOX_DEFAULT
+	closemessage
 	clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
+	msgbox Test_5, MSGBOX_DEFAULT
+	closemessage
     showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
     waitmovement 0
 	setflag FLAG_SAILED_TO_LITTLEROOT
@@ -467,15 +477,25 @@ DewfordTown_EventScript_SailToSlateport::
 	showobjectat LOCALID_PLAYER, MAP_ROUTE109
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
 	waitmovement 0
+	msgbox Test_1, MSGBOX_DEFAULT
+	closemessage
 	setobjectxyperm LOCALID_ROUTE109_BRINEY, 21, 26
 	addobject LOCALID_ROUTE109_BRINEY
+	msgbox Test_2, MSGBOX_DEFAULT
+    closemessage
 	setobjectsubpriority LOCALID_ROUTE109_BRINEY, MAP_ROUTE109, 0
 	applymovement LOCALID_ROUTE109_BRINEY, DewfordTown_Movement_BrineyExitBoat
 	waitmovement 0
+	msgbox Test_3, MSGBOX_DEFAULT
+	closemessage
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	addobject LOCALID_ROUTE109_BOAT
+	msgbox Test_4, MSGBOX_DEFAULT
+    closemessage
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	msgbox Test_5, MSGBOX_DEFAULT
+    closemessage
 	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
 	call_if_unset FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateportDeliverGoods
 	call_if_set FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateport
@@ -486,6 +506,21 @@ DewfordTown_EventScript_SailToSlateport::
 	copyobjectxytoperm LOCALID_ROUTE109_BRINEY
 	release
 	end
+
+Test_1:
+    .string "Test 1$"
+
+Test_2:
+    .string "Test 2$"
+
+Test_3:
+    .string "Test 3$"
+
+Test_4:
+    .string "Test 4$"
+
+Test_5:
+    .string "Test 5$"
 
 DewfordTown_EventScript_LandedSlateportDeliverGoods::
 	msgbox DewfordTown_Text_BrineyLandedInSlateportDeliverGoods, MSGBOX_DEFAULT
