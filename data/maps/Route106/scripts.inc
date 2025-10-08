@@ -13,7 +13,7 @@ Route106_Hide_Briney::
 	end
 
 Route106_Show_Briney::
-    clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
     clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
     end
 
@@ -71,7 +71,7 @@ Route106_Text_LittlerootWoodsSign:
 	.string "A charming forest, home to many Pokémon.$"
 
 Route106_EventScript_Briney::
-	lock
+	lockall
     faceplayer
     message Route106_Text_BackToDewford
     waitmessage
@@ -80,6 +80,7 @@ Route106_EventScript_Briney::
     case 0, Route106_EventScript_Yes
     case 2, Route106_EventScript_CancelSailSelect
     case MULTI_B_PRESSED, Route106_EventScript_CancelSailSelect
+	releaseall
     end
 
 Route106_Text_BackToDewford:
@@ -104,7 +105,7 @@ Route106_EventScript_SailToDewford::
 Route106_EventScript_CancelSailSelect::
 	msgbox Route106_Text_JustTellMeWhenYouNeedToSetSail, MSGBOX_DEFAULT
 	closemessage
-	release
+	releaseall
 	end
 
 Route106_Text_JustTellMeWhenYouNeedToSetSail:

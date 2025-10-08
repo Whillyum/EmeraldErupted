@@ -212,8 +212,8 @@ DewfordTown_EventScript_HasLetter::
 
 DewfordTown_Text_Briney_LetterUpdate:
 	.string "Mr. Briney: Oh, you still have\n"
-	.string "that Letter for Steven?\p"
-	.string "Please deliver it to him, then\n"
+	.string "that Letter I gave you?\p"
+	.string "Please deliver it to Steven, then\n"
 	.string "we can set sail for Littleroot.$"
 
 DewfordTown_EventScript_BrineyLetterDelivered::
@@ -255,6 +255,7 @@ DewfordTown_Text_Briney_LittlerootSettingSail:
 	.string "Peeko, we're setting sail, my darling!$"
 
 DewfordTown_EventScript_SailToLittleroot::
+	lockall
 	call EventScript_BackupMrBrineyLocation
 	setobjectsubpriority LOCALID_DEWFORD_BRINEY, MAP_DEWFORD_TOWN, 0
 	setobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN, 0
@@ -270,24 +271,17 @@ DewfordTown_EventScript_SailToLittleroot::
 	waitmovement 0
     clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY_BOAT
     showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
+	setobjectsubpriority LOCALID_ROUTE106_BOAT, MAP_ROUTE106, 1
 	showobjectat LOCALID_PLAYER, MAP_ROUTE106
-	msgbox Test_1, MSGBOX_DEFAULT
-	closemessage
 	call Common_EventScript_StopBrineysBoatMusic
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatLittleroot
-	msgbox Test_2, MSGBOX_DEFAULT
-	closemessage
+	waitmovement LOCALID_PLAYER, MAP_ROUTE106
+	setobjectxyperm LOCALID_ROUTE106_BRINEY, 71, 10
+	addobject LOCALID_ROUTE106_BRINEY
+	setobjectsubpriority LOCALID_ROUTE106_BRINEY, MAP_ROUTE106, 0
+	applymovement LOCALID_ROUTE106_BRINEY, DewfordTown_Movement_BrineyExitBoat_Route106
 	waitmovement 0
-	msgbox Test_3, MSGBOX_DEFAULT
-	closemessage
-	delay 40
-	msgbox Test_4, MSGBOX_DEFAULT
-	closemessage
 	clearflag FLAG_HIDE_ROUTE_106_MR_BRINEY
-	msgbox Test_5, MSGBOX_DEFAULT
-	closemessage
-    showobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
-    waitmovement 0
 	setflag FLAG_SAILED_TO_LITTLEROOT
 	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
 	setvar VAR_BRINEY_LOCATION, 4
@@ -295,6 +289,12 @@ DewfordTown_EventScript_SailToLittleroot::
 	resetobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN
 	releaseall
 	end
+
+DewfordTown_Movement_BrineyExitBoat_Route106:
+	walk_up
+	walk_up
+	face_right
+	step_end
 
 DewfordTown_Movement_SailToLittleroot:
 	walk_up
@@ -477,25 +477,15 @@ DewfordTown_EventScript_SailToSlateport::
 	showobjectat LOCALID_PLAYER, MAP_ROUTE109
 	applymovement LOCALID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
 	waitmovement 0
-	msgbox Test_1, MSGBOX_DEFAULT
-	closemessage
 	setobjectxyperm LOCALID_ROUTE109_BRINEY, 21, 26
 	addobject LOCALID_ROUTE109_BRINEY
-	msgbox Test_2, MSGBOX_DEFAULT
-    closemessage
 	setobjectsubpriority LOCALID_ROUTE109_BRINEY, MAP_ROUTE109, 0
 	applymovement LOCALID_ROUTE109_BRINEY, DewfordTown_Movement_BrineyExitBoat
 	waitmovement 0
-	msgbox Test_3, MSGBOX_DEFAULT
-	closemessage
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	addobject LOCALID_ROUTE109_BOAT
-	msgbox Test_4, MSGBOX_DEFAULT
-    closemessage
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	msgbox Test_5, MSGBOX_DEFAULT
-    closemessage
 	hideobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
 	call_if_unset FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateportDeliverGoods
 	call_if_set FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateport
