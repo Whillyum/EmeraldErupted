@@ -4,7 +4,7 @@ DewfordTown_MapScripts::
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
-	goto_if_unset FLAG_SAILED_TO_LITTLEROOT, DewfordTown_Show_Briney
+	goto_if_unset FLAG_VISITED_LITTLEROOT_TOWN, DewfordTown_Show_Briney
 	end
 
 DewfordTown_Show_Briney:
