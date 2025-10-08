@@ -78,7 +78,7 @@ Route106_EventScript_Briney::
     multichoicedefault 21, 6, MULTI_YESNO, 2, FALSE
     switch VAR_RESULT
     case 0, Route106_EventScript_Yes
-    case 2, Route106_EventScript_CancelSailSelect
+    case 1, Route106_EventScript_CancelSailSelect
     case MULTI_B_PRESSED, Route106_EventScript_CancelSailSelect
 	releaseall
     end
