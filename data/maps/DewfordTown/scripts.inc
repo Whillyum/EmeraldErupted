@@ -4,14 +4,13 @@ DewfordTown_MapScripts::
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
-	goto_if_unset FLAG_VISITED_LITTLEROOT_TOWN, DewfordTown_Show_Briney
+	goto_if_unset FLAG_VISITED_OLDALE_TOWN, DewfordTown_Show_Briney
 	end
 
 DewfordTown_Show_Briney:
 	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	end
-
 
 DewfordTown_EventScript_ShouldSeeBrawly::
     msgbox DewfordTown_Text_ShouldSeeBrawly, MSGBOX_DEFAULT

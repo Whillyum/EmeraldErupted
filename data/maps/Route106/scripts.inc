@@ -94,13 +94,94 @@ Route106_EventScript_Yes::
 	release
 	end
 
+DewfordTown_EventScript_SailToDewford::
+	lockall
+	call EventScript_BackupMrBrineyLocation
+	setobjectsubpriority LOCALID_ROUTE106_BRINEY, MAP_ROUTE106, 0
+	setobjectsubpriority LOCALID_PLAYER, MAP_ROUTE106, 0
+	applymovement LOCALID_ROUTE106_BRINEY, Route106_Movement_BrineyBoardBoat
+	waitmovement 0
+	removeobject LOCALID_ROUTE106_BRINEY
+	applymovement LOCALID_PLAYER, Route106_Movement_PlayerBoardBoat
+	waitmovement 0
+	hideobjectat LOCALID_PLAYER, MAP_ROUTE106
+	call Common_EventScript_PlayBrineysBoatMusic
+	applymovement LOCALID_ROUTE106_BOAT, Route106_Movement_SailToDewford
+	applymovement LOCALID_PLAYER, Route106_Movement_SailToDewford
+	waitmovement 0
+    clearflag FLAG_HIDE_DEWFORD_TOWN_MR_BRINEY_BOAT
+    showobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
+	setobjectsubpriority LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN, 1
+	showobjectat LOCALID_PLAYER, MAP_DEWFORD_TOWN
+	call Common_EventScript_StopBrineysBoatMusic
+	applymovement LOCALID_PLAYER, Route106_Movement_ExitBoatDewford
+	waitmovement LOCALID_PLAYER, MAP_DEWFORD_TOWN
+	setobjectxyperm LOCALID_DEWFORD_BRINEY, 22, 8
+	addobject LOCALID_DEWFORD_BRINEY
+	setobjectsubpriority LOCALID_DEWFORD_BRINEY, MAP_DEWFORD_TOWN, 0
+	applymovement LOCALID_DEWFORD_BRINEY, Route106_Movement_BrineyExitBoat_Dewford
+	waitmovement 0
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	hideobjectat LOCALID_ROUTE106_BOAT, MAP_ROUTE106
+	setvar VAR_BRINEY_LOCATION, 2
+	call EventScript_ResetMrBriney
+	resetobjectsubpriority LOCALID_PLAYER, MAP_DEWFORD_TOWN
+	releaseall
+	end
+
 Route106_Text_Briney_DewfordSettingSail:
     .string "Mr. Briney: Aye aye!\n"
     .string "We're setting sail for Dewford!$"
 
 Route106_EventScript_SailToDewford::
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_down
+	walk_down
+	walk_right
+	walk_down
+	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_down
+	walk_down
+	step_end
 	releaseall
 	end
+
+Route106_Movement_BrineyBoardBoat:
+	walk_down
+	walk_down
+    step_end
+
+Route106_Movement_PlayerBoardBoat:
+    walk_left
+    walk_down
+	walk_down
+    step_end
+
+Route106_Movement_ExitBoatDewford:
+	walk_down
+	walk_left
+	step_end
+
+Route106_Movement_BrineyExitBoat_Dewford:
+	walk_down
+    face_left
+	step_end
 
 Route106_EventScript_CancelSailSelect::
 	msgbox Route106_Text_JustTellMeWhenYouNeedToSetSail, MSGBOX_DEFAULT
