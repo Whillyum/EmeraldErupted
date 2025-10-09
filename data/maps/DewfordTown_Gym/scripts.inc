@@ -380,17 +380,16 @@ DewfordTown_Gym_Text_CristianPostBattle:
 	.string "Go after that Badge!$"
 
 DewfordTown_Gym_Text_BrawlyIntro:
-	.string "I'm Brawly!\n"
-	.string "Dewford's Gym Leader!\p"
+	.string "So {PLAYER}, you want to challnge me?\n"
+	.string "Brawly, Dewford's Gym Leader?\p"
 	.string "I've been churned in the rough waves\n"
 	.string "of these parts, and I've grown tough\l"
 	.string "in the pitch-black cave!\p"
-	.string "So you wanted to challenge me?\n"
 	.string "Let me see what you're made of!$"
 
 DewfordTown_Gym_Text_BrawlyDefeat:
 	.string "Whoah, wow! You made a much bigger\n"
-	.string "splash than I expected!\p"
+	.string "splash than I expected, {PLAYER}!\p"
 	.string "You swamped me!\p"
 	.string "Okay, you've got me.\n"
 	.string "Take this Gym Badge!$"
@@ -400,11 +399,12 @@ DewfordTown_Gym_Text_ReceivedKnuckleBadge:
 	.string "from Brawly.$"
 
 DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
-	.string "The Knuckle Badge makes all Pokémon\n"
-	.string "up to Level 30, even those you get in\l"
-	.string "trades, obey without question.\p"
-	.string "And, you'll be able to use the HM move\n"
-	.string "Flash outside of battle.\p"
+	.string "You'll now meet higher level wild\n"
+	.string "Pokémon, and Trainers will use\l"
+	.string "stronger Pokémon themselves.\p"
+	.string "I'll ask Mr. Briney it he will\n"
+	.string "give you a lift to the mainland.\l"
+	.string "You should find him at the pier.\p"
 	.string "If you'd like, use this Technical\n"
 	.string "Machine, too.$"
 
