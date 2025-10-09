@@ -1,5 +1,6 @@
 OldaleTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, OldaleTown_OnFrame
 	.byte 0
 
 OldaleTown_OnTransition:
@@ -10,7 +11,10 @@ OldaleTown_OnTransition:
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
 	end
 
-@ This script seems pointless because nothing uses VAR_OLDALE_TOWN_STATE
+OldaleTown_OnFrame:
+	map_script_2 VAR_OLDALE_TOWN_STATE, 1, OldaleTown_EventScript_SetOldaleState
+	.2byte 0
+
 OldaleTown_EventScript_SetOldaleState::
 	setvar VAR_OLDALE_TOWN_STATE, 1
 	return

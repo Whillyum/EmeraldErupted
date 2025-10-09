@@ -1,11 +1,18 @@
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, DewfordTown_OnWarp
+	//map_script MAP_SCRIPT_ON_FRAME_TABLE, DewfordTown_OnFrame
 	.byte 0
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
-	goto_if_unset FLAG_VISITED_OLDALE_TOWN, DewfordTown_Show_Briney
+	call_if_eq VAR_BRINEY_LOCATION, 2, DewfordTown_Show_Briney
 	end
+
+DewfordTown_OnWarp:
+	map_script_2 VAR_BRINEY_LOCATION, 2, DewfordTown_Show_Briney
+	map_script_2 VAR_OLDALE_TOWN_STATE, 0, DewfordTown_Show_Briney
+    .2byte 0
 
 DewfordTown_Show_Briney:
 	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN

@@ -2444,7 +2444,7 @@ static bool32 AiExpectsToFaintPlayer(u32 battler)
 
     return FALSE;
 }
-
+/*
 static bool32 ShouldUseItem(u32 battler)
 {
     struct Pokemon *party;
@@ -2560,7 +2560,7 @@ static bool32 ShouldUseItem(u32 battler)
 
     return FALSE;
 }
-
+*/
 static bool32 AI_ShouldHeal(u32 battler, u32 healAmount)
 {
     bool32 shouldHeal = FALSE;

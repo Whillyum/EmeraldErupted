@@ -1053,11 +1053,7 @@
     },
     {
       "id": "MAPSEC_BERRY_FOREST",
-      "name": "Berry Forest",
-      "x": 2,
-      "y": 12,
-      "width": 3,
-      "height": 1
+      "name": "Berry Forest"
     },
     {
       "id": "MAPSEC_ICEFALL_CAVE",

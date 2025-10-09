@@ -99,6 +99,7 @@ Route106_EventScript_SailToDewford::
 	call EventScript_BackupMrBrineyLocation
 	setobjectsubpriority LOCALID_ROUTE106_BRINEY, MAP_ROUTE106, 0
 	setobjectsubpriority LOCALID_PLAYER, MAP_ROUTE106, 0
+	setobjectsubpriority LOCALID_ROUTE106_BOAT, MAP_ROUTE106, 1
 	applymovement LOCALID_ROUTE106_BRINEY, Route106_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject LOCALID_ROUTE106_BRINEY
@@ -138,22 +139,22 @@ Route106_Movement_SailToDewford::
 	walk_down
 	walk_fast_down
 	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
 	walk_down
 	walk_down
 	walk_right
 	walk_down
 	walk_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
 	walk_fast_down
 	walk_fast_down
 	walk_down
