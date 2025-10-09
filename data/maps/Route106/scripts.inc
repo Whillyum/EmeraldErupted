@@ -75,7 +75,7 @@ Route106_EventScript_Briney::
     faceplayer
     message Route106_Text_BackToDewford
     waitmessage
-    multichoicedefault 21, 6, MULTI_YESNO, 2, FALSE
+    multichoicedefault 21, 6, MULTI_YESNO, 0, FALSE
     switch VAR_RESULT
     case 0, Route106_EventScript_Yes
     case 1, Route106_EventScript_CancelSailSelect
@@ -94,7 +94,7 @@ Route106_EventScript_Yes::
 	release
 	end
 
-DewfordTown_EventScript_SailToDewford::
+Route106_EventScript_SailToDewford::
 	lockall
 	call EventScript_BackupMrBrineyLocation
 	setobjectsubpriority LOCALID_ROUTE106_BRINEY, MAP_ROUTE106, 0
@@ -109,7 +109,7 @@ DewfordTown_EventScript_SailToDewford::
 	applymovement LOCALID_ROUTE106_BOAT, Route106_Movement_SailToDewford
 	applymovement LOCALID_PLAYER, Route106_Movement_SailToDewford
 	waitmovement 0
-    clearflag FLAG_HIDE_DEWFORD_TOWN_MR_BRINEY_BOAT
+    clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
     showobjectat LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN
 	setobjectsubpriority LOCALID_DEWFORD_BOAT, MAP_DEWFORD_TOWN, 1
 	showobjectat LOCALID_PLAYER, MAP_DEWFORD_TOWN
@@ -133,7 +133,7 @@ Route106_Text_Briney_DewfordSettingSail:
     .string "Mr. Briney: Aye aye!\n"
     .string "We're setting sail for Dewford!$"
 
-Route106_EventScript_SailToDewford::
+Route106_Movement_SailToDewford::
 	walk_down
 	walk_down
 	walk_fast_down
